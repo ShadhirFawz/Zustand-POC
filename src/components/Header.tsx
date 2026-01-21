@@ -13,9 +13,10 @@ const Header = () => {
       backgroundColor: theme === 'dark' ? '#333' : '#f0f0f0',
       color: theme === 'dark' ? '#fff' : '#000',
       marginBottom: '2rem',
+      borderRadius: '8px',
       borderBottom: `1px solid ${theme === 'dark' ? '#555' : '#ddd'}`,
     }}>
-      <h1>{storeName}</h1>
+      <h2>{storeName}</h2>
       <p>Current Theme: {theme}</p>
     </header>
   );

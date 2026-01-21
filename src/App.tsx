@@ -37,7 +37,7 @@ const App = () => {
             fontSize: '0.9rem',
           }}>
             <h3>Performance Notes:</h3>
-            <ul>
+            <ul style={{marginLeft: '1rem'}}>
               <li>Header only re-renders when storeName or theme changes</li>
               <li>Counter only re-renders when counter value changes</li>
               <li>Settings only re-renders when storeName or theme changes</li>

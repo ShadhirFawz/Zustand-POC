@@ -12,6 +12,6 @@ export const createStoreSlice: StateCreator<
   [],
   StoreSlice
 > = (set) => ({
-  storeName: 'My Zustand Store',
+  storeName: 'Starzi Store',
   updateStoreName: (newName: string) => set({ storeName: newName }),
 });

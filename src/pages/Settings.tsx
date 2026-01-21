@@ -26,35 +26,32 @@ const Settings = () => {
       border: '1px solid #ccc',
       borderRadius: '8px',
       maxWidth: '500px',
+      justifyItems: 'center',
     }}>
       <h2>Settings</h2>
       
-      <div style={{ marginBottom: '2rem' }}>
+      <div style={{ marginBottom: '2rem', justifyItems: 'center' }}>
         <h3>Store Name</h3>
         <p>Current name: <strong>{storeName}</strong></p>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', justifyItems: 'center', marginTop: '3rem' }}>
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Enter new store name"
-            style={{ flex: 1, padding: '0.5rem' }}
+            style={{ flex: 1, padding: '0.5rem', fontSize: '1rem' }}
           />
-          <button type="submit">Update Name</button>
+          <button type="submit" style={{fontSize: '10px'}}>Update Name</button>
         </form>
       </div>
       
-      <div>
+      <div style={{justifyItems: 'center'}}>
         <h3>Theme Settings</h3>
         <p>Current theme: <strong>{theme}</strong></p>
-        <button onClick={toggleTheme}>
+        <button onClick={toggleTheme} style={{marginTop: '3rem'}}>
           Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
         </button>
       </div>
-      
-      <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '2rem' }}>
-        This component only re-renders when storeName or theme changes
-      </p>
     </div>
   );
 };
