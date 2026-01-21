@@ -14,19 +14,22 @@ const Counter = () => {
       padding: '1rem',
       border: '1px solid #ccc',
       borderRadius: '8px',
-      maxWidth: '300px',
+      maxWidth: '400px',
       margin: '1rem 0',
+      justifyItems: 'center',
+      alignItems: 'center',
     }}>
       <h2>Counter Component</h2>
-      <p>Count: <strong>{counter}</strong></p>
-      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-        <button onClick={decrementCounter}>Decrement</button>
-        <button onClick={incrementCounter}>Increment</button>
+      <div style={{marginTop: '5rem', fontSize: '2rem'}}>
+        <p>
+            Count: <strong>{counter}</strong>
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '2rem', justifyContent: 'center' }}>
+        <button onClick={incrementCounter}>&#43;</button>
+        <button onClick={decrementCounter}>&#8722;</button>
         <button onClick={resetCounter}>Reset</button>
       </div>
-      <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '1rem' }}>
-        This component only re-renders when counter changes
-      </p>
     </div>
   );
 };
