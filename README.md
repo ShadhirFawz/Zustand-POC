@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Zustand POC Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a proof-of-concept application demonstrating Zustand as a global client state management solution for React applications.
 
-In the project directory, you can run:
+## Why Zustand?
 
-### `npm start`
+- **Simplicity**: Minimal boilerplate compared to Redux
+- **Performance**: Built-in selector support prevents unnecessary re-renders
+- **Flexibility**: Can be used without providers wrapping the entire app
+- **TypeScript Support**: Excellent TypeScript support out of the box
+- **Scalability**: Slice pattern allows for organized state management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Key Differences from React Context
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Performance**: Zustand uses selectors to prevent unnecessary re-renders, while Context re-renders all consumers when value changes
+2. **Boilerplate**: Zustand requires less boilerplate code
+3. **Organization**: Zustand's slice pattern provides better code organization for complex state
+4. **No Provider Hell**: No need to wrap components in multiple providers
 
-### `npm test`
+## Store Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The store is split into two slices:
 
-### `npm run build`
+### 1. Store Slice (`storeSlice.ts`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Contains business/domain state
+- `storeName`: string
+- `updateStoreName`: function
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. UI Slice (`uiSlice.ts`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Contains UI/presentation state
+- `theme`: 'light' | 'dark'
+- `counter`: number
+- `toggleTheme`, `incrementCounter`, etc.: functions
 
-### `npm run eject`
+## Rendering Control
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Components use selectors to subscribe only to specific state pieces:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```typescript
+// Good - only re-renders when counter changes
+const counter = useAppStore((state) => state.counter);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+// Bad - re-renders when ANY state changes
+const { counter } = useAppStore();
